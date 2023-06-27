@@ -9,18 +9,20 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ApplyMailToUser extends Mailable implements ShouldQueue
+class JobAlertToUserMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public $job;
+    public $user;
+    public $jobs;
 
-    public function __construct($job)
+    public function __construct($user, $jobs)
     {
-        $this->job = $job;
+        $this->user = $user;
+        $this->jobs = $jobs;
     }
 
     /**
@@ -29,7 +31,7 @@ class ApplyMailToUser extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Your application sent successfully',
+            subject: 'You have recieved new jobs',
         );
     }
 
@@ -39,12 +41,12 @@ class ApplyMailToUser extends Mailable implements ShouldQueue
     public function content(): Content
     {
         return new Content(
-            view: 'mail.apply-mail-to-user',
+            view: 'mail.job-alert-to-user',
             with: [
-                'job_title' => $this->job->job_title, 
-                'location' => $this->job->location,
+                'user_name' =>$this->user->name,
+                'jobs' => $this->jobs, 
                 'app_url' => config('app.url')
-            ],
+            ]
         );
     }
 

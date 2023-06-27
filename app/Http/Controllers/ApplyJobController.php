@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ApplyMailToEmployee;
 use App\Mail\ApplyMailToUser;
 use App\Models\Job;
 use App\Models\Resume;
@@ -52,15 +53,18 @@ class ApplyJobController extends Controller
 
         $job = Job::findOrFail($jobId);
 
+        $employee = User::findOrFail($job->user_id);
+
         $user->jobs()->attach($job, [
             'applied_at' => now(),
             'status' => 'pending',
         ]);
 
         Mail::to($user->email)
-        // ->cc($moreUsers)
-        // ->bcc($evenMoreUsers)
-        ->send(new ApplyMailToUser($job));
+            ->send(new ApplyMailToUser($job));
+
+        Mail::to($employee->email)
+            ->send(new ApplyMailToEmployee($user, $job));
 
         return redirect()->back()->with('success', 'Job applied successfully');
     }

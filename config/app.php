@@ -57,6 +57,8 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
+    'admin_mail' => env('ADMIN_MAIL', 'softwarejobsc@gmail.com'),
+
     'asset_url' => env('ASSET_URL'),
 
     'payment' => [

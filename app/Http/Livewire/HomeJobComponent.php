@@ -19,7 +19,7 @@ class HomeJobComponent extends Component
     {
         $this->loading = true;
 
-        $categories = Job::distinct()->pluck('category')->map(function ($category) {
+        $categories = Job::whereStatus('approved')->distinct()->pluck('category')->map(function ($category) {
             return ucfirst(Str::slug($category, ' '));
         });
 

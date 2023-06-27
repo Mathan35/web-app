@@ -2,8 +2,11 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\ApplicationSelectedMail;
 use App\Models\ApplyJob;
 use App\Models\Job;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use Illuminate\Support\Facades\Redirect;
 
@@ -39,10 +42,18 @@ class EmployeeJobDetails extends Component
         } else {
             $job->status = $status;
             $job->save();
+
+            $user = User::find($userId);
+            $actualJob = Job::find($job->job_id);
+
+            $mail = Mail::to($user->email)
+            ->send(new ApplicationSelectedMail($user, $actualJob));
+
             // session()->flash('message', 'Status successfully updated.');
             return Redirect::back()->with('message', 'Status successfully updated.');
 
         }
+
         return redirect()->back();
 
     }

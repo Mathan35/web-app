@@ -6,7 +6,8 @@
             <h2 class="text-gray-700 font-sans text-sm py-4">Location :- {{$location}}</h2>
             <h2 class="text-lg font-sans font-semibold text-gray-800 mt-6">Your application has beed sent..!</h2>
             <p class="text-xs text-gray-700 py-6 font-sans font-normal w-8/12 mx-auto">If your application is selected, a representative from the company's HR or recruitment team will contact you shortly.
-                Please keep an eye on your job profile's status.</p>
+                Please keep an eye on your job profile's status .</p>
+            <a class="text-blue-600" href="{{$app_url}}/applied/jobs">View Job status</a>
         </div>
     </x-mail-layout>
 </div>

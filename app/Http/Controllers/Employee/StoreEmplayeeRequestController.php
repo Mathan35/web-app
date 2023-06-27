@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Employee;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreJobRequest;
+use App\Mail\JobPostedMailToAdminMail;
 use App\Models\Job;
 use App\Models\RichContent;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Razorpay\Api\Api;
 use Illuminate\Support\Str;
 
@@ -93,6 +95,9 @@ class StoreEmplayeeRequestController extends Controller
             'callback_url' => 'http://127.0.0.1:8000/payment/callback',
             'callback_method' => 'get'
         ));
+
+        Mail::to(config('app.admin_mail'))
+            ->send(new JobPostedMailToAdminMail(User::find(auth()->user()->id), $job));
 
         return redirect($payment->short_url);
         

@@ -9,19 +9,22 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ApplyMailToUser extends Mailable implements ShouldQueue
+class ApplicationSelectedMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
+    public $user;
     public $job;
 
-    public function __construct($job)
+    public function __construct($user, $job)
     {
+        $this->user = $user;
         $this->job = $job;
     }
+
 
     /**
      * Get the message envelope.
@@ -29,7 +32,7 @@ class ApplyMailToUser extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Your application sent successfully',
+            subject: 'Congratulations! Your application has been selected.',
         );
     }
 
@@ -39,12 +42,12 @@ class ApplyMailToUser extends Mailable implements ShouldQueue
     public function content(): Content
     {
         return new Content(
-            view: 'mail.apply-mail-to-user',
+            view: 'mail.application-selected-mail',
             with: [
-                'job_title' => $this->job->job_title, 
-                'location' => $this->job->location,
+                'user_name' => $this->user->name,
+                'job_title' => $this->job->job_title,
                 'app_url' => config('app.url')
-            ],
+            ]
         );
     }
 

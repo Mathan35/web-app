@@ -14,6 +14,8 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->command('app:update-payment-pending')->everyMinute();
+        $schedule->command('app:send-job-alert-command')->daily();
+        $schedule->command('pp:send-job-alert-to-email-command')->daily();
     }
 
     /**

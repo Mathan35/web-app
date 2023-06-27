@@ -29,7 +29,6 @@ class PaymentCallbackController extends Controller
             return redirect('/');
         }
 
-        $jobId = Job::whereUserId(auth()->user()->id)->first();
         $payment = new Payment();
         $payment->payment_id = 'PAYMENT'.rand(111111, 9999999);
         $payment->razorpay_payment_id = $request['razorpay_payment_id'];
