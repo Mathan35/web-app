@@ -11,6 +11,7 @@ class Resume extends Model
 
     protected $fillable = [
         'resume',
+        'extension',
         'user_id'
     ];
 }

@@ -17,17 +17,20 @@ class StoreResumeController extends Controller
             $filename = $file->getClientOriginalName();
             $file->move(public_path('public/resume'), $filename);
             $data['resume'] = $filename;
+            $extension = $file->getClientOriginalExtension();
 
-            $checkResume = Resume::find(auth()->user()->id);
+            $checkResume = Resume::whereUserId(auth()->user()->id)->first();
 
             if($checkResume != null){
                 $checkResume->user_id = auth()->user()->id;
                 $checkResume->resume = $filename;
+                $checkResume->extension = $extension;
                 $checkResume->save();
             }else{
                 $storeResume = new Resume();
                 $storeResume->user_id = auth()->user()->id;
                 $storeResume->resume = $filename;
+                $checkResume->extension = $extension;
                 $storeResume->save();
             }
 

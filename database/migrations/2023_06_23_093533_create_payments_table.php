@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('job_id')->constrained()->onDelete('cascade');
             $table->string('payment_id')->nullable();
             $table->string('razorpay_payment_id')->nullable();
             $table->string('razorpay_payment_link_id')->nullable();

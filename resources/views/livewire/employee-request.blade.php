@@ -47,7 +47,7 @@
         @csrf
         <div class=" bg-white shadow-sm rounded-md my-10 py-10 px-5 space-y-4">
             <h2 class="text-xl font-sans text-gray-800 font-bold text-center">Job posting request</h2>
-            <p class="text-xs font-sans text-gray-700 text-center">Submit your job request we will contact you within a hour!</p>
+            <p class="text-xs font-sans text-gray-700 text-center">Submit your job request we will post you within a hour!</p>
 
             <div class="sm:flex items-center sm:space-y-0 space-y-2">
                 <label class="text-md text-gray-700 font-bold font-sans w-full sm:w-52" for="">Job Title</label>
@@ -75,6 +75,8 @@
                     <label class="text-md text-gray-700 font-bold font-sans w-full sm:w-52" for="">Job Description url</label>
                     <input name='description_url' placeholder="https://amazon/carears/job" class="border border-gray-200 rounded-md w-full py-1 px-2 font-sans focus:border-gray-400 focus:outline-none" type="text" id="">
                 </div>
+                <p class="text-xs font-sans text-gray-500 py2">If you add URL job apply button is redirected to this URL</p>
+
                 @error('description_url')
                 <div class="alert alert-danger text-xs text-red-600">{{ $message }}</div>
                 @enderror
@@ -84,6 +86,9 @@
                 <label class="text-md text-gray-700 font-bold font-sans w-full sm:w-52" for="">Location</label>
                 <input name='location' class="border border-gray-200 rounded-md w-full py-1 px-2 font-sans focus:border-gray-400 focus:outline-none" placeholder="ex,.. Chennai, Banglore" type="text" id="">
             </div>
+            @error('location')
+            <div class="alert alert-danger text-xs text-red-600">{{ $message }}</div>
+            @enderror
 
             <div class="sm:flex items-center sm:space-y-0 space-y-2">
                 <label class="text-md text-gray-700 font-bold font-sans w-full sm:w-52" for="">Job Category</label>
@@ -97,10 +102,10 @@
                 <label class="text-md text-gray-700 font-bold font-sans w-full sm:w-52" for="">Job Type</label>
                 <div>
                     <select name="job_type" data-te-select-init class="flex w-full">
-                        <option value="wfh">WFO</option>
-                        <option value="remote">Remote</option>
-                        <option value="on-site">On-site</option>
-                        <option value="hybrid">Hybrid</option>
+                        <option value="WFO">WFO</option>
+                        <option value="Remote">Remote</option>
+                        <option value="On-site">On-site</option>
+                        <option value="Hybrid">Hybrid</option>
                     </select>
                     <label data-te-select-label-ref>Filter</label>
                 </div>

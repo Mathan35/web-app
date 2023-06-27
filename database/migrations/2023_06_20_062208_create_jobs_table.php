@@ -27,8 +27,11 @@ return new class extends Migration
             $table->string('end_ex')->nullable();
             $table->string('job_type')->nullable();
             $table->string('category')->nullable();
+            $table->string('created_by')->nullable();
             $table->integer('total_views')->nullable();
             $table->integer('auth_user_views')->nullable();
+            $table->string('status')->nullable();
+            $table->timestamp('status_changed_at')->nullable();
             $table->timestamps();
         });
     }

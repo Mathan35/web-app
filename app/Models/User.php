@@ -20,6 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone',
         'role',
         'password',
     ];
@@ -56,5 +57,13 @@ class User extends Authenticatable
     public function resume()
     {
         return $this->hasOne(Resume::class);
+    }
+
+    public function jobs()
+    {
+        return $this->belongsToMany(Job::class, 'apply_jobs')
+        ->using(ApplyJob::class)
+            ->withPivot(['applied_at', 'status'])
+            ->withTimestamps();
     }
 }

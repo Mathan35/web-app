@@ -5,8 +5,17 @@
         </h2>
     </x-slot>
 
+
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+
+            <div class="p-4 mx-2 sm:p-4 bg-blue-50 dark:bg-gray-800 shadow sm:rounded-lg">
+                <div class="max-w-xl ">
+                    <a class="text-sm items-center text-blue-700 font-sans" href="{{route('applied-jobs')}}">Applied Jobs <i class="text-xs fa-solid fa-share"></i></a>
+                </div>
+            </div>
+
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                 <div class="max-w-xl">
                     @include('profile.partials.update-profile-information-form')

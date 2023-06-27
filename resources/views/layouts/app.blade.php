@@ -33,6 +33,10 @@
 
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@600&display=swap" rel="stylesheet">
 </head>
 
 <body class="font-sans antialiased flex flex-col min-h-screen">
@@ -55,12 +59,14 @@
     </div>
 
     <div class="bg-white px-6 shadow-sm py-10 text-center  text-neutral-800 dark:bg-neutral-700 dark:text-neutral-200 mt-10">
-        <a class="flex focus:outline-none items-center rounded-full space-x-1 bg-blue-900 text-center mx-auto w-fit px-6 pb-1 pt-1 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]" data-te-ripple-init data-te-ripple-color="light" href="{{route('employee-request')}}" role="button">
+        @if( ! Auth::check() || Auth::user()->role == 1 )
+        <a href="{{route('employee-request')}}" class="flex items-center rounded-full space-x-1 bg-blue-900 text-center mx-auto w-fit px-6 pb-1 pt-1 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]" data-te-ripple-init data-te-ripple-color="light" role="button">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m5.834.166l-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243l-1.59-1.59" />
             </svg>
             <p>For employee</p>
         </a>
+        @endif
         <div class="text-center mx-auto lg:w-1/2 mt-3">
             <h3 class="mb-8 text-sm font-sans ">SoftwareJobs in best place to search and post jobs for both proffessionals and employers.we have quality and trusted opportunities, Let's start a career with us</h3>
         </div>
@@ -68,7 +74,7 @@
         <hr class="my-2">
 
         <div class="">
-            <a href="/" class="text-slate-600 text-lg font-sans font-bold">SoftwareJobs</a>
+            <a href="/" class="text-slate-600 text-lg font-sans font-bold" style="font-family: 'Belanosima', sans-serif;">SoftwareJobs</a>
 
             <div class="space-x-3 my-2">
                 <a class="bg-gray-100 shadow-md rounded-full py-2 px-2.5 text-pink-600" href=""> <i class="fa-brands fa-instagram"></i></a>
@@ -112,6 +118,10 @@
     <script type="module" src="https://unpkg.com/@material-tailwind/html@latest/scripts/tooltip.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.6/flowbite.min.js"></script>
+    <!-- from cdn -->
+    <script type="module" src="https://unpkg.com/@material-tailwind/html@latest/scripts/popover.js"></script>
+
+    @stack('scripts')
 
 </body>
 

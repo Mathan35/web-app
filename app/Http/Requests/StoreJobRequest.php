@@ -36,6 +36,7 @@ class StoreJobRequest extends FormRequest
                 'company_logo' => 'sometimes|mimes:jpeg,jpg,png|required|max:10000',
                 'start_ex' => 'required_with:end_page|integer',
                 'end_ex' => 'required_with:start_ex|integer',
+                'location' => 'required|max:255',
                 'name' => 'required|max:255',
                 'email' => 'required|email|unique:users|max:255',
                 'password' => 'required',
@@ -51,6 +52,7 @@ class StoreJobRequest extends FormRequest
                 'company_logo' => 'sometimes|mimes:jpeg,jpg,png|required|max:10000',
                 'start_ex' => 'required_with:end_page|integer',
                 'end_ex' => ['required_with:start_ex|integer', new CheckExperience($request->input('start_ex'))],
+                'location' => 'required|max:255',
             ];
         }
     }

@@ -8,11 +8,16 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class DialogJob extends Component
 {
-    public $filename;
+    public $resume;
 
+    public function __construct($resume)
+    {
+        $this->resume = $resume;
+    }
+    
     public function download()
     {
-        $filePath = public_path('/public/resume/civil_engineer_resume_template.pdf');
+        $filePath = public_path('/public/resume/'.$this->resume);
 
         if (file_exists($filePath)) {
             return response()->download($filePath);

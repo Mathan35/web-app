@@ -2,15 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ApplyJob;
+use App\Models\Job;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ViewJobController extends Controller
 {
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function __invoke(Request $request, $id)
     {
-        return view('view-job');
+        $job = Job::find($id);
+
+        if (Auth::check()) {
+            $job->auth_user_views++;
+        }
+
+        $job->total_views++;
+        $job->save();
+
+        return view('view-job', compact('job'));
     }
 }

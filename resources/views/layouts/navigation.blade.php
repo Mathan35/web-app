@@ -5,7 +5,7 @@
             <div class="flex w-full flex-wrap items-center justify-between px-3 max-w-6xl mx-auto">
 
                 <div class="lg:block hidden">
-                    <a href="/" class="text-slate-600 text-lg font-sans font-bold">SoftwareJobs</a>
+                    <a href="/" class="text-slate-600 text-2xl font-sans font-bold" style="font-family: 'Belanosima', sans-serif;">Software<span class="text-blue-800">Jobs</span></a>
                 </div>
 
                 <div class="flex items-center">
@@ -23,7 +23,7 @@
                 <div class="!visible hidden grow basis-[100%] items-center lg:!flex lg:basis-auto lg:ml-24" id="navbarSupportedContentY" data-te-collapse-item>
                     <ul class="mr-auto flex flex-col lg:flex-row" data-te-navbar-nav-ref>
                         <li class="mb-4 lg:mb-0 lg:pr-2">
-                            <a class="block transition hover:text-gray-900 duration-150 ease-in-out focus:text-neutral-700 disabled:text-black/30 dark:hover:text-white dark:focus:text-white lg:p-2 [&.active]:text-black/90" href="/" data-te-nav-link-ref data-te-ripple-init data-te-ripple-color="light">Home</a>
+                            <a class="block transition hover:text-gray-900 duration-150 ease-in-out focus:text-neutral-700 disabled:text-black/30 dark:hover:text-white dark:focus:text-white lg:p-2 [&.active]:text-black/90 {{ Request::url() == route('home') ? 'text-blue-700' : '' }}" href="/" data-te-nav-link-ref data-te-ripple-init data-te-ripple-color="light">Home</a>
                         </li>
                         <li class="mb-4 lg:mb-0 lg:pr-2">
                             <a class="block transition hover:text-gray-900 duration-150 ease-in-out focus:text-neutral-700 disabled:text-black/30 dark:hover:text-white dark:focus:text-white lg:p-2 [&.active]:text-black/90" href="{{route('freshers')}}" data-te-nav-link-ref data-te-ripple-init data-te-ripple-color="light">Freshers</a>
@@ -53,12 +53,30 @@
                 <ul role="menu" data-popover="menu" data-popover-placement="bottom" class="absolute z-10 min-w-[180px] overflow-auto rounded-md border border-blue-gray-50 bg-white p-3 font-sans text-sm font-normal text-blue-gray-500 shadow-lg shadow-blue-gray-500/10 focus:outline-none">
                     <li role="menuitem" class="block w-full cursor-pointer select-none rounded-md px-3 pt-[9px] pb-2 text-start leading-tight transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
                         @if(Auth::user()->role == 0)
-                        <a href="/profile">Profile</a>
+                        <a class="{{ Request::url() == route('profile.edit') ? 'text-blue-700' : '' }}" href="/profile">Profile</a>
                         @endif
                         @if(Auth::user()->role == 1)
-                        <a href="{{route('employee-dashboard')}}">Profile</a>
+                        <a class="{{ Request::url() == route('employee-dashboard') ? 'text-blue-700' : '' }}" href="{{route('employee-dashboard')}}">Profile</a>
                         @endif
                     </li>
+
+                    @if(Auth::user()->role == 0)
+                    <li role="menuitem" class="{{ Request::url() == route('applied-jobs') ? 'text-blue-700' : '' }} block w-full cursor-pointer select-none rounded-md px-3 pt-[9px] pb-2 text-start leading-tight transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                        <a href="{{route('applied-jobs')}}">Applied Jobs</a>
+                    </li>
+                    @endif
+
+                    @if(Auth::user()->role == 1)
+                    <li role="menuitem" class="{{ Request::url() == route('employee-request') ? 'text-blue-700' : '' }} block w-full cursor-pointer select-none rounded-md px-3 pt-[9px] pb-2 text-start leading-tight transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                        <a href="{{route('employee-request')}}">Post Jobs</a>
+                    </li>
+
+                    <li role="menuitem" class="{{ Request::url() == route('job-history') ? 'text-blue-700' : '' }} block w-full cursor-pointer select-none rounded-md px-3 pt-[9px] pb-2 text-start leading-tight transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                        <a href="{{route('job-history')}}">Job History</a>
+                    </li>
+                    @endif
+
+
                     <!-- <li role="menuitem" class="block w-full cursor-pointer select-none rounded-md px-3 pt-[9px] pb-2 text-start leading-tight transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
                         <a href="">Setting</a>
                     </li> -->
@@ -74,7 +92,6 @@
         </nav>
     </header>
 </div>
-
 
 <div class="flex space-x-2">
     <div>
@@ -96,7 +113,7 @@
                     <div class=" items-center lg:!flex lg:basis-auto lg:ml-24" id="navbarSupportedContentY" data-te-collapse-item>
                         <ul class="mr-auto flex flex-col lg:flex-row" data-te-navbar-nav-ref>
                             <li class="mb-4 lg:mb-0 lg:pr-2">
-                                <a class="block transition hover:text-gray-900 duration-150 ease-in-out focus:text-neutral-700 disabled:text-black/30 dark:hover:text-white dark:focus:text-white lg:p-2 [&.active]:text-black/90" href="/" data-te-nav-link-ref data-te-ripple-init data-te-ripple-color="light">Home</a>
+                                <a class="block transition hover:text-gray-900 duration-150 ease-in-out focus:text-neutral-700 disabled:text-black/30 dark:hover:text-white dark:focus:text-white lg:p-2 [&.active]:text-black/90 {{ Request::url() == route('home') ? 'text-blue-700' : '' }} " href="/" data-te-nav-link-ref data-te-ripple-init data-te-ripple-color="light">Home</a>
                             </li>
                             <li class="mb-4 lg:mb-0 lg:pr-2">
                                 <a class="block transition hover:text-gray-900 duration-150 ease-in-out focus:text-neutral-700 disabled:text-black/30 dark:hover:text-white dark:focus:text-white lg:p-2 [&.active]:text-black/90" href="{{route('freshers')}}" data-te-nav-link-ref data-te-ripple-init data-te-ripple-color="light">Freshers</a>
