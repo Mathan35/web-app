@@ -46,7 +46,7 @@ class EmployeeJobDetails extends Component
             $user = User::find($userId);
             $actualJob = Job::find($job->job_id);
 
-            $mail = Mail::to($user->email)
+            Mail::to($user->email)
             ->send(new ApplicationSelectedMail($user, $actualJob));
 
             // session()->flash('message', 'Status successfully updated.');

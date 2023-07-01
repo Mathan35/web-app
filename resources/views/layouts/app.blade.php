@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Software Jobs') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -40,6 +40,14 @@
 </head>
 
 <body class="font-sans antialiased flex flex-col min-h-screen">
+
+    <!-- <div id="loader" class="flex justify-center items-center h-screen overflow-y-hidden">
+        <div class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-primary motion-reduce:animate-[spin_1.5s_linear_infinite]" role="status">
+            <span class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Loading...</span>
+        </div>
+    </div> -->
+
+
     <div class="bg-gray-100 dark:bg-gray-900">
         <x-navigation-layout></x-navigation-layout>
 
@@ -58,7 +66,7 @@
 
     </div>
 
-    <div class="bg-white px-6 shadow-sm py-10 text-center  text-neutral-800 dark:bg-neutral-700 dark:text-neutral-200 mt-10">
+    <div class="bg-white px-6 shadow-sm py-8 text-center  text-neutral-800 dark:bg-neutral-700 dark:text-neutral-200 mt-10">
         @if( ! Auth::check() || Auth::user()->role == 1 )
         <a href="{{route('employee-request')}}" class="flex items-center rounded-full space-x-1 bg-blue-900 text-center mx-auto w-fit px-6 pb-1 pt-1 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]" data-te-ripple-init data-te-ripple-color="light" role="button">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -74,9 +82,9 @@
         <hr class="my-2">
 
         <div class="">
-            <a href="/" class="text-slate-600 text-lg font-sans font-bold" style="font-family: 'Belanosima', sans-serif;">SoftwareJobs</a>
+            <a href="/" class="text-slate-600 text-xl font-sans font-bold" style="font-family: 'Belanosima', sans-serif;">Software<span class="text-blue-800">Jobs</span></a>
 
-            <div class="space-x-3 my-2">
+            <div class="space-x-3 my-4">
                 <a class="bg-gray-100 shadow-md rounded-full py-2 px-2.5 text-pink-600" href=""> <i class="fa-brands fa-instagram"></i></a>
                 <a class="bg-gray-100 shadow-md rounded-full py-2 px-2.5 text-blue-600" href=""><i class="fa-brands fa-telegram"></i></a>
                 <a class="bg-gray-100 shadow-md rounded-full py-2 px-2.5 text-green-600" href=""><i class="fa-brands fa-whatsapp"></i></a>
@@ -87,6 +95,19 @@
     <!-- from cdn -->
     <!-- <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/ripple.js.map"></script> -->
     <livewire:scripts />
+    <!-- <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            // Show the loader when the page starts loading
+            document.body.style.overflow = 'hidden';
+            document.getElementById('loader').style.display = 'block';
+        });
+
+        window.addEventListener('load', function() {
+            // Hide the loader when the page finishes loading
+            document.body.style.overflow = 'auto'; // or 'scroll'
+            document.getElementById('loader').style.display = 'none';
+        });
+    </script> -->
 
     <!-- from cdn -->
     <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/collapse.js"></script>

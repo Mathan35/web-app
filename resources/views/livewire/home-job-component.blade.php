@@ -1,7 +1,7 @@
 <div class="px-2 py-4">
     <div class="max-w-5xl mx-auto shadow-sm rounded-md py-4 px-4 bg-white space-y-3 sm:space-y-0 sm:flex justify-between items-center my-3">
         <div class="w-100">
-            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
+            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Category</label>
             <select wire:model='category' id="countries" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option value="all">All</option>
                 @foreach($categories as $category)
@@ -12,7 +12,7 @@
         <div>
             <div>
                 <div class="w-100">
-                    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
+                    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Job type</label>
                     <select wire:model='type' class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option value="all" selected>All</option>
                         <option value="wfo">WFO</option>
@@ -33,7 +33,7 @@
         </div>
 
         @forelse($jobs as $job)
-        <a href="{{route('view-job', $job['id'])}}">
+        <a href="{{route('view-job', $job['id'])}}" target="_blank">
             <div class="border border-gray-150 rounded-md mt-3 py-2 px-3 w-full lg:flex lg:items-center lg:justify-between space-y-2 hover:shadow-lg transition ease-in-out delay-150">
                 <div class="flex space-x-3 items-center">
                     <div>
@@ -43,10 +43,13 @@
                         <img src="{{asset('public/company_logo/'.$job['company_logo'])}}" class="relative inline-block sm:h-12 sm:w-12 h-14 w-28  rounded-md object-cover object-center" alt="">
                         @endif
                     </div>
-                    <div>
+                    <div class="space-x-1">
                         <h2 class="text-md text-gray-700 font-sans font-bold">{{ $job['job_title'] }}</h2>
                         <h2 class="text-sm text-gray-700 font-sans">{{ $job['company_name'] }}</h2>
                         <h2 class="text-xs text-gray-600 font-medium font-sans">{{ $job['salary'] }}</h2>
+                        @if( $job['created_by'] === 'admin')
+                        <h2 class="text-xs text-slate-700 font-semibold font-sans" style="font-family: 'Belanosima', sans-serif;">Software<span class="text-blue-800">Jobs</span></h2>
+                        @endif
                     </div>
                 </div>
                 <div>

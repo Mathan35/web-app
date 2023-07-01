@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 return new class extends Migration
 {
@@ -12,8 +13,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('jobs', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->uuid('id')->primary();
+            $table->uuid('user_id')->nullable();
             $table->string('job_id')->unique()->nullable();
             $table->integer('hot_job')->nullable();
             $table->string('company_name')->nullable();
@@ -28,6 +29,7 @@ return new class extends Migration
             $table->string('job_type')->nullable();
             $table->string('category')->nullable();
             $table->string('created_by')->nullable();
+            $table->timestamp('expired_at')->nullable();
             $table->integer('total_views')->nullable();
             $table->integer('auth_user_views')->nullable();
             $table->string('status')->nullable();

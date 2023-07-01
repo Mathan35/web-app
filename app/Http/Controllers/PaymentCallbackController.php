@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use Razorpay\Api\Api;
 use App\Models\Payment;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\InputBag;
-use Razorpay\Api\Api;
 
 class PaymentCallbackController extends Controller
 {
@@ -30,6 +31,7 @@ class PaymentCallbackController extends Controller
         }
 
         $payment = new Payment();
+        $payment->id = Str::uuid()->toString();
         $payment->payment_id = 'PAYMENT'.rand(111111, 9999999);
         $payment->razorpay_payment_id = $request['razorpay_payment_id'];
         $payment->job_id = $checkRazerPayment['notes']['job_id'];

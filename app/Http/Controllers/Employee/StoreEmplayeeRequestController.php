@@ -24,25 +24,28 @@ class StoreEmplayeeRequestController extends Controller
         $user = null;
         if(!Auth::check()){
             
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'role' => 1,
-                'password' => Hash::make($request->password),
-            ]);
+            $user = new User();
+            $user->id = Str::uuid()->toString();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->role = 1;
+            $user->status = 1;
+            $user->password = Hash::make($request->password);
+            $user->save();
 
             Auth::login($user);
         }
         $categorySlug = Str::slug($request->category);
 
         $job = new Job();
+        $job->id = Str::uuid()->toString();
         $job->job_title = $request->job_title;
         $job->user_id = Auth::check()? auth()->user()->id:$user->id;
         $job->job_id = $this->getJobId();
         $job->hot_job = $request->hot_job? 1:0;
         $job->company_name = $request->company_name;
         $job->description_url = $request->description_url;
-        $job->salary = $request->salary;
+        $job->salary = number_format($request->salary, 2);
         $job->location = $request->location;
         $job->start_ex = $request->start_ex;
         $job->end_ex = $request->end_ex;
@@ -63,6 +66,7 @@ class StoreEmplayeeRequestController extends Controller
 
         if($request->content != null){
             $jobContent = new RichContent();
+            $jobContent->id = Str::uuid()->toString(); 
             $jobContent->job_id = $job->id;
             $jobContent->content = $request->content;
             $jobContent->save();

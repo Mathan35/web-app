@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\ApplyMailToEmployee;
-use App\Mail\ApplyMailToUser;
 use App\Models\Job;
-use App\Models\Resume;
 use App\Models\User;
+use App\Models\Resume;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Mail\ApplyMailToUser;
+use App\Mail\ApplyMailToEmployee;
+use App\Models\ApplyJob;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
@@ -43,11 +45,12 @@ class ApplyJobController extends Controller
                 $resume->extension = $extension;
                 $resume->save();
             } else {
-                Resume::create([
-                    'user_id' => $user->id,
-                    'resume' => $filename,
-                    'extension' => $extension,
-                ]);
+                $resume = new Resume();
+                $resume->id = Str::uuid()->toString();
+                $resume->user_id = $user->id;
+                $resume->resume = $filename;
+                $resume->extension = $extension;
+                $resume->save();
             }
         }
 
@@ -55,10 +58,13 @@ class ApplyJobController extends Controller
 
         $employee = User::findOrFail($job->user_id);
 
-        $user->jobs()->attach($job, [
-            'applied_at' => now(),
-            'status' => 'pending',
-        ]);
+        $applyJob = new ApplyJob();
+        $applyJob->id = Str::uuid()->toString();
+        $applyJob->user_id = $user->id;
+        $applyJob->job_id = $job->id;
+        $applyJob->applied_at = now();
+        $applyJob->status = 'pending';
+        $applyJob->save();
 
         Mail::to($user->email)
             ->send(new ApplyMailToUser($job));

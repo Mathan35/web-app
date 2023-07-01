@@ -1,6 +1,6 @@
 <div>
     <x-app-layout>
-        <div class="max-w-5xl mx-auto my-16">
+        <div class="max-w-5xl mx-auto my-16 ">
             <div class="">
                 <div class="p-4 mx-2 sm:p-4 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                     <div class="max-w-xl ">
@@ -74,7 +74,14 @@
                             {{$job->status === 'pending'? 'bg-yellow-400 p-1 w-fit rounded-full':''}}
                             {{$job->status === 'payment'? 'bg-red-600 p-1 w-fit rounded-full':''}} mb-.5"></p>
                         </h1>
-                        <h2 class="text-sm text-gray-700 font-sans font-bold">{{$job->job_title}} - {{$job->location}}</h2>
+                        <h2 class="text-sm text-gray-700 font-sans font-bold flex items-center space-x-2">
+                            <p class="text-sm text-gray-700 font-sans font-bold">{{$job->job_title}} - {{$job->location}}</p>
+                            <a href="{{route('edit-job', $job->id)}}">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-blue-700">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                </svg>
+                            </a>
+                        </h2>
                         @if($job->status != 'payment')
                         <div class="flex items-center space-x-4">
                             @if($job->total_views)

@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Email;
 use Livewire\Component;
+use Illuminate\Support\Str;
 
 class GetUserMail extends Component
 {
@@ -26,6 +27,7 @@ class GetUserMail extends Component
         );
 
         $email = new Email();
+        $email->id = Str::uuid()->toString();
         $email->email = $this->email;
         $email->save();
 

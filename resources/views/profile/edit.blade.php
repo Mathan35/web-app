@@ -7,22 +7,50 @@
 
 
 
-    <div class="py-12">
+    <div class="py-12 px-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
 
-            <div class="p-4 mx-2 sm:p-4 bg-blue-50 dark:bg-gray-800 shadow sm:rounded-lg">
+            <div class="p-4 sm:p-4 bg-blue-50 dark:bg-gray-800 shadow rounded-sm sm:rounded-lg">
                 <div class="max-w-xl ">
                     <a class="text-sm items-center text-blue-700 font-sans" href="{{route('applied-jobs')}}">Applied Jobs <i class="text-xs fa-solid fa-share"></i></a>
                 </div>
             </div>
+            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg rounded-sm">
+                @if (Session::has('message'))
+                <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+                    {{ Session::get('message') }}.
+                </div>
+                @endif
 
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                <div class="max-w-xl">
+                    <form action="{{route('profile.image')}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload Profile</label>
+
+                        <div class="py-3 px-3">
+                            <img class="w-14 h-14 mr-2 rounded-full" src="{{asset('public/profile/'.Auth::user()->profile)}}" alt="user photo">
+                        </div>
+
+                        <input name="profile" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file">
+                        <div class="flex items-center gap-4 mt-5">
+                            <x-primary-button>{{ __('Save') }}</x-primary-button>
+
+                            @if (session('status') === 'profile')
+                            <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)" class="text-sm text-gray-600 dark:text-gray-400">{{ __('Saved.') }}</p>
+                            @endif
+                        </div>
+                    </form>
+                </div>
+                <x-input-error :messages="$errors->get('profile')" class="mt-2" />
+
+            </div>
+            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow rounded-sm sm:rounded-lg">
                 <div class="max-w-xl">
                     @include('profile.partials.update-profile-information-form')
                 </div>
             </div>
 
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow rounded-sm sm:rounded-lg">
 
                 @if (session()->has('message'))
                 <div class="alert alert-success my-2 ">
@@ -61,7 +89,7 @@
                 </form>
             </div>
 
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow rounded-sm sm:rounded-lg">
                 <div class="max-w-xl">
                     @include('profile.partials.update-password-form')
                 </div>

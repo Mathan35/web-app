@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'SoftwareJobs'),
 
     /*
     |--------------------------------------------------------------------------
@@ -64,6 +64,8 @@ return [
     'payment' => [
         'key' => env('RAZER_KEY'),
         'secret' => env('RAZER_SECRET'),
+        'job' => env('JOB_PAY'),
+        'extra' => env('EXTRA_PAY'),
     ],
 
     /*
@@ -192,6 +194,8 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Filament' => Filament\Filament::class,
+
     ])->toArray(),
 
 ];

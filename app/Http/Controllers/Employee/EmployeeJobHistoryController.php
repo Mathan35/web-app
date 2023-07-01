@@ -13,8 +13,6 @@ class EmployeeJobHistoryController extends Controller
      */
     public function __invoke(Request $request)
     {
-       
-
         return view('employee.employee-job-history');
     }
 }

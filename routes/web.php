@@ -1,21 +1,23 @@
 <?php
 
-use App\Http\Controllers\AppliedJobsController;
-use App\Http\Controllers\ApplyJobController;
-use App\Http\Controllers\AutocompleteCategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ViewJobController;
+use App\Http\Controllers\ApplyJobController;
+use App\Http\Controllers\AppliedJobsController;
 use App\Http\Controllers\FreshersJobController;
+use App\Http\Controllers\StoreResumeController;
 use App\Http\Controllers\ExperienceJobController;
 use App\Http\Controllers\PaymentCreateController;
 use App\Http\Controllers\PaymentCallbackController;
+use App\Http\Controllers\Employee\EditJobController;
+use App\Http\Controllers\PayPaymentPendingController;
+use App\Http\Controllers\Employee\UpdateJobController;
+use App\Http\Controllers\AutocompleteCategoryController;
 use App\Http\Controllers\Employee\EmployeeRequestController;
 use App\Http\Controllers\Employee\EmployeeJobHistoryController;
-use App\Http\Controllers\Employee\EmployeeJobHistoryDetailsController;
 use App\Http\Controllers\Employee\StoreEmplayeeRequestController;
-use App\Http\Controllers\PayPaymentPendingController;
-use App\Http\Controllers\StoreResumeController;
+use App\Http\Controllers\Employee\EmployeeJobHistoryDetailsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/profile/image', [ProfileController::class, 'storeImage'])->name('profile.image');
 
     // Route::post('/payment/create', PaymentCreateController::class)->name('payment-create');
     Route::get('/payment/callback', PaymentCallbackController::class,)->name('payment-callback');
@@ -51,6 +54,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/job-history', EmployeeJobHistoryController::class)->name('job-history');
         Route::get('/job-history/details/{id}', EmployeeJobHistoryDetailsController::class)->name('job-history-details');
         Route::post('pay/payment-pending/{id}', PayPaymentPendingController::class)->name('pay-pending-payment');
+        Route::get('/edit/job/{id}', EditJobController::class)->name('edit-job');
+        Route::put('/update/job/{id}', UpdateJobController::class)->name('update-job');
     });
 });
 

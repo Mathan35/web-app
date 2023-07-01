@@ -11,16 +11,16 @@
 
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-3">
 
-            <div class="p-4 mx-2 sm:p-4 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+            <div class="p-4 mx-2 sm:p-4 bg-white dark:bg-gray-800 shadow rounded-sm sm:rounded-lg">
                 <div class="max-w-xl ">
                     <h2 class="text-md font-sans font-semibold text-gray-700">Applied Jobs</h2>
                 </div>
             </div>
 
             @forelse ($jobs as $job)
-            <div class="p-4 my-2 mx-2 sm:p-4 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+            <div class="p-4 my-2 mx-2 sm:p-4 bg-white dark:bg-gray-800 shadow rounded-sm sm:rounded-lg">
                 <div class="max-w-xl space-y-1">
                     <h1 class="text-xs font-light text-gray-700">Job ID: {{$job->job_id}}</h1>
                     <h2 class="text-sm text-gray-700 font-sans font-bold">{{$job->job_title}} <span class="text-xs font-normal text-blue-600">( {{ $job->company_name}} )</span></h2>

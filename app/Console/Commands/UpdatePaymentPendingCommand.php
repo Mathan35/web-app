@@ -27,7 +27,7 @@ class UpdatePaymentPendingCommand extends Command
      */
     public function handle()
     {
-        $jobs = Job::query()->get()->map(function($job) {
+        $jobs = Job::where('created_by', '!=', 'admin')->query()->get()->map(function($job) {
             $appliedJob = Payment::whereJobId($job->id)->where('status', 'paid')->first();
             if($job->status === 'pending' && !$appliedJob){
                 $job->status = 'payment';
@@ -38,5 +38,6 @@ class UpdatePaymentPendingCommand extends Command
                 $job->save();
             }
         });
+        
     }
 }

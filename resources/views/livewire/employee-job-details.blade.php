@@ -163,7 +163,7 @@
                                             <td class="whitespace-nowrap border-r px-6 py-2 dark:border-neutral-500 text-gray-700">
                                                 <div>
 
-                                                    <select wire:change='updateStatus(event.target.value, {{$user->id}})' id="statusFilter" class="p-2 border border-gray-300 rounded-md ml-2">
+                                                    <select wire:change='updateStatus(event.target.value,"{{$user->id}}")' id="statusFilter" class="p-2 border border-gray-300 rounded-md ml-2">
                                                         <option disabled value="all">All</option>
                                                         <option {{$user->pivot->status==='pending'? 'selected' : ''}} value="pending">Pending</option>
                                                         <option {{$user->pivot->status==='rejected'? 'selected' : ''}} value="rejected">Rejected</option>
@@ -228,7 +228,7 @@
                                             </td>
                                             <td class="whitespace-nowrap border-r px-6 py-2 dark:border-neutral-500 text-gray-700">
                                                 <div>
-                                                    <select wire:change='updateStatus(event.target.value, {{$user->id}})' id="statusFilter" class="p-2 border border-gray-300 rounded-md ml-2">
+                                                    <select wire:change='updateStatus(event.target.value, "{{$user->id}}")' id="statusFilter" class="p-2 border border-gray-300 rounded-md ml-2">
                                                         <option disabled value="all">All</option>
                                                         <option {{$user->pivot->status==='pending'? 'selected' : ''}} value="pending">Pending</option>
                                                         <option {{$user->pivot->status==='rejected'? 'selected' : ''}} value="rejected">Rejected</option>
@@ -293,7 +293,7 @@
                                             </td>
                                             <td class="whitespace-nowrap border-r px-6 py-2 dark:border-neutral-500 text-gray-700">
                                                 <div>
-                                                    <select wire:change='updateStatus(event.target.value, {{$user->id}})' id="statusFilter" class="p-2 border border-gray-300 rounded-md ml-2">
+                                                    <select wire:change='updateStatus(event.target.value, "{{$user->id}}")' id="statusFilter" class="p-2 border border-gray-300 rounded-md ml-2">
                                                         <option disabled value="all">All</option>
                                                         <option {{$user->pivot->status==='pending'? 'selected' : ''}} value="pending">Pending</option>
                                                         <option {{$user->pivot->status==='rejected'? 'selected' : ''}} value="rejected">Rejected</option>
@@ -340,11 +340,11 @@
                                 });
                             </script>
 
-                            <script>
+                            <!-- <script>
                                 setTimeout(function() {
                                     location.reload();
                                 }, 15000);
-                            </script>
+                            </script> -->
                         </div>
                     </div>
                 </div>

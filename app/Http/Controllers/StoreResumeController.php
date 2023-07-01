@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ResumeRequest;
 use App\Models\Resume;
+use Illuminate\Support\Str;
+use App\Http\Requests\ResumeRequest;
 
 class StoreResumeController extends Controller
 {
@@ -28,9 +29,10 @@ class StoreResumeController extends Controller
                 $checkResume->save();
             }else{
                 $storeResume = new Resume();
+                $storeResume->id = Str::uuid()->toString();
                 $storeResume->user_id = auth()->user()->id;
                 $storeResume->resume = $filename;
-                $checkResume->extension = $extension;
+                $storeResume->extension = $extension;
                 $storeResume->save();
             }
 
