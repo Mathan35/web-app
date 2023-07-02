@@ -63,6 +63,9 @@
                                         <th scope="col" class="border-r px-6 py-4 dark:border-neutral-500">
                                             Created by
                                         </th>
+                                        <th scope="col" class="border-r px-6 py-4 dark:border-neutral-500">
+                                            Status ( approved, pending )
+                                        </th>
                                         <th scope="col" class="px-6 py-4">view applied students</th>
                                     </tr>
                                 </thead>

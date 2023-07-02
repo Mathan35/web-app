@@ -45,7 +45,7 @@ class StoreEmplayeeRequestController extends Controller
         $job->hot_job = $request->hot_job? 1:0;
         $job->company_name = $request->company_name;
         $job->description_url = $request->description_url;
-        $job->salary = number_format($request->salary, 2);
+        $job->salary = $request->salary;
         $job->location = $request->location;
         $job->start_ex = $request->start_ex;
         $job->end_ex = $request->end_ex;

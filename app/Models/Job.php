@@ -64,7 +64,7 @@ class Job extends Model
     public function users()
     {
         return $this->belongsToMany(User::class, 'apply_jobs')
-        ->using(ApplyJob::class)
+            ->using(ApplyJob::class)
             ->withPivot(['applied_at', 'status'])
             ->withTimestamps();
     }
@@ -72,7 +72,7 @@ class Job extends Model
     public function userCount()
     {
         return $this->belongsToMany(User::class, 'apply_jobs')
-        ->using(ApplyJob::class)->count();
+            ->using(ApplyJob::class)->count();
     }
 
     public function isApplied($id)
