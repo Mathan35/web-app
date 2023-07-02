@@ -25,7 +25,6 @@ use App\Http\Controllers\Admin\Payments\PaymentIndexController;
 |
 */
 
-// Admin routes
 Route::middleware(['auth', 'admin'])->group(function () {
    Route::get('admin/dashboard', DashboardController::class)->name('admin-dashboard');
 

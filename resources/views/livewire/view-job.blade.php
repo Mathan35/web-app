@@ -66,7 +66,7 @@
                 <div class="flex space-x-3 items-center">
                     <div>
                         @if($job['company_logo'] === null)
-                        <img src="{{asset('public/company_logo/company-dummy.png')}}" class="relative inline-block sm:h-12 sm:w-12 h-14 w-28  rounded-md object-cover object-center" alt="">
+                        <img src="{{asset('public/company_logo/company_dummy.png')}}" class="relative inline-block sm:h-12 sm:w-12 h-14 w-28  rounded-md object-cover object-center" alt="">
                         @else
                         <img src="{{asset('public/company_logo/'.$job['company_logo'])}}" class="relative inline-block sm:h-12 sm:w-12 h-14 w-28  rounded-md object-cover object-center" alt="">
                         @endif
